@@ -15,15 +15,19 @@ $(document).ready(() => {
       // create FormData and send request
       const fd = new FormData();
       fd.append('file', file);
-      return $.ajax({
+      const response = await $.ajax({
         contentType: false,
         data: fd,
         processData: false,
         type: 'POST',
         url: '/process',
       });
+
+      // replace the DOM with a new page
+      return document.write(response);
     } catch (error) {
-      return console.log('error', error);
+      console.log('error', error);
+      return document.write(error);
     }
   });
 });
