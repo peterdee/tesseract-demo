@@ -7,7 +7,7 @@ const router = Router();
 /**
  * Handle index route
  */
-router.get('/', async (_, res) => {
+router.get('/', async (req, res) => {
   // make sure that the files directory exists
   try {
     await fs.access(directory);
@@ -18,6 +18,7 @@ router.get('/', async (_, res) => {
   return res.render(
     'index',
     {
+      generated: Date.now() - req.incoming,
       year: new Date().getFullYear(),
     },
   );

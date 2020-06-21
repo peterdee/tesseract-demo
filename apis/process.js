@@ -40,6 +40,7 @@ router.get('/', async (req, res) => {
     return res.render(
       'processed',
       {
+        generated: Date.now() - req.incoming,
         result,
         year: new Date().getFullYear(),
       },

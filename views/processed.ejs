@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link
-      href='/styles/style.css'
-      rel='stylesheet'
-    />
-    <title>Tesseract Demo</title>
+    <%- include('partials/head'); %>
   </head>
   <body>
     <div class="centered">
@@ -14,8 +10,6 @@
         <%= result %>
       </div>
     </div>
-    <footer>
-      <a href="https://github.com/peterdee">Peter Dyumin</a>, <%= year %>
-    </footer>
+    <%- include('partials/footer', { generated, year }); %>
   </body>
 </html>

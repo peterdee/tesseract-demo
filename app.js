@@ -14,6 +14,12 @@ const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+// track the response time
+app.use((req, _, next) => {
+  req.incoming = Date.now();
+  return next();
+});
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
@@ -33,10 +39,13 @@ app.use((err, req, res, next) => {
   res.locals.error = req.app.get('env') === 'development'
     ? err
     : {};
-  console.log('err', err)
+
   // render the error page
   res.status(err.status || 500);
-  return res.render('error');
+  return res.render('error', {
+    generated: Date.now() - req.incoming,
+    year: new Date().getFullYear(),
+  });
 });
 
 module.exports = app;

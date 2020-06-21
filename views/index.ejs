@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link
-      href='/styles/style.css'
-      rel='stylesheet'
-    />
+    <%- include('partials/head'); %>
     <script src="/js/jq.js"></script>
     <script src="/js/index.js"></script>
-    <title>Tesseract Demo</title>
   </head>
   <body>
-    <div class="centered">
-      <h1>Tesseract Demo</h1>
+    <div class="centered noselect">
+      <h1>TESSERACT DEMO</h1>
+      <h2>SUPPORTS ENGLISH AND RUSSIAN LANGUAGES</h2>
       <div class="source">
         <a href="https://github.com/peterdee/tesseract-demo">
           VIEW SOURCE
@@ -41,8 +38,6 @@
         id="error"
       ></div>
     </div>
-    <footer>
-      <a href="https://github.com/peterdee">Peter Dyumin</a>, <%= year %>
-    </footer>
+    <%- include('partials/footer', { generated, year }); %>
   </body>
 </html>
