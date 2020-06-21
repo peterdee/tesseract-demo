@@ -6,7 +6,6 @@ const path = require('path');
 
 const index = require('./apis/index');
 const process = require('./apis/process');
-const upload = require('./apis/upload');
 
 const app = express();
 
@@ -15,7 +14,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // track the response time
-app.use((req, _, next) => {
+app.use((req, res, next) => {
   req.incoming = Date.now();
   return next();
 });
@@ -27,8 +26,7 @@ app.use(helmet());
 app.use(logger('dev'));
 
 app.use('/', index);
-app.use('/processed', process);
-app.use('/upload', upload);
+app.use('/process', process);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => next(createError(404)));

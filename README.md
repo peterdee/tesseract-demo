@@ -19,7 +19,7 @@ brew install tesseract
 Install language pack:
 
 ```shell script
-brew install brew install tesseract-lang
+brew install tesseract-lang
 ```
 
 Check the list of supported languages:
@@ -40,7 +40,7 @@ npm i
 ### Launch
 
 ```shell script
-npm start
+npm run dev
 ```
 
 ### Heroku

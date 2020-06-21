@@ -4,10 +4,13 @@
     <%- include('partials/head'); %>
   </head>
   <body>
-    <div class="centered">
+    <div class="result">
       <h1>Processed</h1>
-      <div>
-        <%= result %>
+      <textarea disabled="true">
+        <%- result %>
+      </textarea>
+      <div class="back">
+        <a href="/">Back</a>
       </div>
     </div>
     <%- include('partials/footer', { generated, year }); %>

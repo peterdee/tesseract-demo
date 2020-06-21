@@ -9,7 +9,8 @@
   "description": "A simple Tesseract demo",
   "homepage": "https://github.com/peterdee/tesseract-demo",
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www"
   },
   "engines": {
     "node": "14.4.0",

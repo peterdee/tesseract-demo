@@ -2,6 +2,8 @@
  * Handle the file selection
  */
 $(document).ready(() => {
+  $('#file').on('change', () => $('#error').empty());
+
   $('#form').on('submit', async (event = {}) => {
     try {
       event.preventDefault();
@@ -10,7 +12,7 @@ $(document).ready(() => {
       // check file
       const [file = null] = $('#file').prop('files');
       if (!file) {
-        return false;
+        return $('#error').append('PLEASE SELECT A FILE!');
       }
 
       // create FormData and send request
@@ -21,7 +23,7 @@ $(document).ready(() => {
         data: fd,
         processData: false,
         type: 'POST',
-        url: '/upload',
+        url: '/process',
       });
 
       // replace the DOM with a new page
