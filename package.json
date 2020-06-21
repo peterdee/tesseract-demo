@@ -2,11 +2,30 @@
   "name": "tesseract-demo",
   "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "Peter Dyumin",
+    "url": "https://github.com/peterdee"
+  },
+  "description": "A simple Tesseract demo",
+  "homepage": "https://github.com/peterdee/tesseract-demo",
   "scripts": {
     "start": "nodemon ./bin/www"
   },
+  "engines": {
+    "node": "14.4.0",
+    "npm": "6.14.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peterdee/tesseract-demo"
+  },
+  "keywords": [
+    "EJS",
+    "Express",
+    "Node",
+    "Tesseract"
+  ],
   "dependencies": {
-    "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",

@@ -11,10 +11,10 @@ router.get('/', async (_, res) => {
   // make sure that the files directory exists
   try {
     await fs.access(directory);
-  } catch (error) {
+  } catch {
     await fs.mkdir(directory);
   }
-  
+
   return res.render(
     'index',
     {

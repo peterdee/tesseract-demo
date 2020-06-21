@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 
     // process the file
     const result = await recognize(`${directory}/${file}`, {
-      lang: 'eng',
+      lang: 'eng+rus',
       oem: 1,
       psm: 3,
     });
