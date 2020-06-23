@@ -14,6 +14,9 @@ $(document).ready(() => {
       if (!file) {
         return $('#error').append('PLEASE SELECT A FILE!');
       }
+      
+      // disable the 'Submit' button
+      $('#submit').attr('disabled', true);
 
       // create FormData and send request
       const fd = new FormData();
@@ -26,9 +29,15 @@ $(document).ready(() => {
         url: '/process',
       });
 
+      // enable the 'Submit' button
+      $('#submit').attr('disabled', false);
+
       // replace the DOM with a new page
       return document.write(response);
     } catch (error) {
+      // enable the 'Submit' button
+      $('#submit').attr('disabled', false);
+
       const { responseJSON: { info = '' } = {} } = error;
       if (info && info === 'MISSING_FILE') {
         return $('#error').empty().append('MISSING FILE!');

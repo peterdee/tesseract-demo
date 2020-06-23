@@ -8,6 +8,8 @@ Stack: [EJS](https://ejs.co/), [Express](https://expressjs.com/), [Node](https:/
 
 DEV: http://localhost:1111
 
+STAGE: https://tesseract-demo.herokuapp.com
+
 ### Deploy
 
 Install [`tesseract`](https://formulae.brew.sh/formula/tesseract) first:
