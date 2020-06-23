@@ -3,6 +3,7 @@
 /* CSS variables */
 :root {
   --blue: #4488FF;
+  --gray: #989898;
   --red: #FF4488;
 }
 
@@ -101,6 +102,13 @@ textarea:focus {
 }
 .button:hover {
   cursor: pointer;
+}
+.button:disabled, .button:disabled:hover {
+  background-color: white;
+  border: 2px solid var(--gray);
+  color: var(--gray);
+  cursor: default;
+  transition: all 250ms ease-in-out;
 }
 .error {
   color: var(--red);
