@@ -3,6 +3,8 @@ const multer = require('multer');
 const { recognize } = require('node-tesseract-ocr');
 const { Router } = require('express');
 
+const filename = require('../utilities/filename');
+
 const directory = `${process.cwd()}/files`;
 const router = Router();
 const storage = multer.diskStorage({
@@ -12,7 +14,7 @@ const storage = multer.diskStorage({
   ),
   filename: (req, file, cb) => cb(
     null,
-    `${Date.now()}.${file.originalname.split('.').slice(-1)}`,
+    `${filename(file.originalname)}`,
   ),
 });
 const upload = multer({ storage });
@@ -39,15 +41,12 @@ router.post(
         return res.status(400).send({ info: 'MISSING_FILE' });
       }
 
-      // check files
+      // check the file that actually needs to be processed
       const files = await fs.readdir(directory);
-      if (!(Array.isArray(files) && files.length > 0)) {
+      const file = filename(req.file.originalname);
+      if (!(Array.isArray(files) && files.length > 0 && file && files.includes(file))) {
         return res.status(400).send({ info: 'MISSING_FILE' });
       }
-      console.log('-- FILES:\n', files);
-
-      // order files to process the most recent one
-      const [file] = files.sort((a, b) => Number(b) - Number(a));
 
       // process the file
       const result = await recognize(`${directory}/${file}`, {
@@ -68,7 +67,9 @@ router.post(
         },
       );
     } catch (error) {
-      console.log('-- PROCESS ERROR:\n', error);
+      // delete the file to prevent any errors
+      await fs.unlink(`${directory}/${filename(req.file.originalname)}`);
+
       return res.status(500).send({ info: 'INTERNAL_SERVER_ERROR' });
     }
   },
