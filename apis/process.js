@@ -44,6 +44,7 @@ router.post(
       if (!(Array.isArray(files) && files.length > 0)) {
         return res.status(400).send({ info: 'MISSING_FILE' });
       }
+      console.log('-- FILES:\n', files);
 
       // order files to process the most recent one
       const [file] = files.sort((a, b) => Number(b) - Number(a));
@@ -67,9 +68,8 @@ router.post(
         },
       );
     } catch (error) {
-      console.log('error', error)
-      // TODO: fix error handling for the frontend
-      return res.render('error', { message: error.message });
+      console.log('-- PROCESS ERROR:\n', error);
+      return res.status(500).send({ info: 'INTERNAL_SERVER_ERROR' });
     }
   },
 );
