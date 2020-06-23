@@ -47,4 +47,6 @@ npm run dev
 
 ### Heroku
 
-*IN PROGRESS*
+This project uses a custom Heroku buildpack: https://github.com/peterdee/heroku-buildpack-tesseract-en-ru
+
+The `stage` branch is deployed to Heroku automatically.
