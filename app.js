@@ -1,3 +1,4 @@
+const compression = require('compression')
 const createError = require('http-errors');
 const express = require('express');
 const helmet = require('helmet');
@@ -19,6 +20,7 @@ app.use((req, res, next) => {
   return next();
 });
 
+app.use(compression());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));

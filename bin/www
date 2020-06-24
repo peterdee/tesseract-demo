@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const debug = require('debug')('tesseract-demo:server');
-const fs = require('fs').promises;
 const http = require('http');
 
 const app = require('../app');
@@ -55,14 +54,6 @@ server.on('error', (error) => {
  * If everything's fine
  */
 server.on('listening', async () => {
-  // create the 'files' directory on launch
-  const directory = `${process.cwd()}/files`;
-  try {
-    await fs.access(directory);
-  } catch {
-    await fs.mkdir(directory);
-  }
-
   const addr = server.address();
   const bind = typeof addr === 'string'
     ? `pipe ${addr}`
