@@ -44,7 +44,6 @@ router.post(
       // check the file that actually needs to be processed
       const files = await fs.readdir(directory);
       const file = filename(req.file.originalname);
-      console.log(file, files);
       if (!(Array.isArray(files) && files.length > 0 && file && files.includes(file))) {
         return res.status(400).send({ info: 'MISSING_FILE' });
       }
